@@ -15,6 +15,14 @@
 @property (nonatomic, weak) UIButton *landscapeButton;
 
 @property (nonatomic, weak) UIView *framingView;
+
+//added
+@property (nonatomic) UIView *customPurpleBox;
+@property (nonatomic) UIView *customOrangeBox1;
+@property (nonatomic) UIView *customOrangeBox2;
+@property (nonatomic) UIView *customRedBox;
+@property (nonatomic) UIView *customBlueBox;
+
 @property (nonatomic, weak) NSLayoutConstraint *framingViewHeightConstraint;
 @property (nonatomic, weak) NSLayoutConstraint *framingViewWidthConstraint;
 
@@ -106,7 +114,37 @@
     self.framingViewWidthConstraint.active = YES;
 
     
-    // Set up your views and constraints here
+    // Set up your views and constraints here--------------------------------------------------------
+    
+    self.customPurpleBox = [[UIView alloc] initWithFrame:CGRectZero];
+    self.customPurpleBox.backgroundColor = [UIColor purpleColor];
+    [self.view addSubview:self.customPurpleBox];
+    
+    self.customPurpleBox.translatesAutoresizingMaskIntoConstraints = NO;
+    
+    NSLayoutConstraint *rightConstraintPurple = [NSLayoutConstraint constraintWithItem:self.customPurpleBox attribute:NSLayoutAttributeTrailing relatedBy:NSLayoutRelationEqual toItem:self.framingView attribute:NSLayoutAttributeTrailing multiplier:1.0 constant:-20];
+    NSLayoutConstraint *bottomConstraintPurple = [NSLayoutConstraint constraintWithItem:self.customPurpleBox attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self.framingView attribute:NSLayoutAttributeBottom multiplier:1.0 constant:-20];
+    NSLayoutConstraint *heightConstraintPurple = [NSLayoutConstraint constraintWithItem:self.customPurpleBox attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0 constant:50];
+    NSLayoutConstraint *widthConstraintPurple = [NSLayoutConstraint constraintWithItem:self.customPurpleBox attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:self.framingView attribute:NSLayoutAttributeWidth multiplier:(305.0/500.0) constant:0];
+
+    //ANCHOR - new way of using constraints
+    //    NSLayoutConstraint *rightConstraint2 = [self.customPurpleBox.trailingAnchor constraintEqualToAnchor:self.framingView.trailingAnchor constant:20];
+    
+    [NSLayoutConstraint activateConstraints:@[rightConstraintPurple,bottomConstraintPurple,heightConstraintPurple,widthConstraintPurple]];
+
+    self.customOrangeBox1 = [[UIView alloc] initWithFrame:CGRectZero];
+    self.customOrangeBox1.backgroundColor = [UIColor orangeColor];
+    [self.view addSubview:self.customOrangeBox1];
+    self.customOrangeBox1.translatesAutoresizingMaskIntoConstraints = NO;
+    
+    NSLayoutConstraint *heightConstraintOrange1 = [NSLayoutConstraint constraintWithItem:self.customOrangeBox1 attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0 constant:30];
+    
+    NSLayoutConstraint *widthConstraintOrange1 = [NSLayoutConstraint constraintWithItem:self.customOrangeBox1 attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:self.framingView attribute:NSLayoutAttributeWidth multiplier:(50.0/500.0) constant:0];
+    NSLayoutConstraint *rightConstraintOrange1 = [NSLayoutConstraint constraintWithItem:self.customOrangeBox1 attribute:NSLayoutAttributeTrailing relatedBy:NSLayoutRelationEqual toItem:self.framingView attribute:NSLayoutAttributeTrailing multiplier:1.0 constant:-20];
+    NSLayoutConstraint *topConstraintOrange1 = [NSLayoutConstraint constraintWithItem:self.customOrangeBox1 attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.framingView attribute:NSLayoutAttributeTop multiplier:1.0 constant:20];
+    
+    [NSLayoutConstraint activateConstraints:@[heightConstraintOrange1, widthConstraintOrange1, rightConstraintOrange1, topConstraintOrange1]];
+
     
     
 }
